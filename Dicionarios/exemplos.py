@@ -1,6 +1,3 @@
-from string.manipulacao_string import cidade
-
-
 def exibir_aluno():
     aluno = {
         'nome': 'Gustavo',
@@ -84,9 +81,9 @@ def verificar_aprovacao():
         'frequencia': 88
     }
     if aluno['nota'] >= 6 and aluno['frequencia'] >= 75:
-        print(f'O aluno {aluno["nome"]} foi aprovado!')
+        print(f"O aluno {aluno['nome']} foi aprovado!")
     else:
-        print(f'O aluno {aluno["nome"]} foi reprovado!')
+        print(f"O aluno {aluno['nome']} foi reprovado!")
 
 
 verificar_aprovacao()
@@ -122,10 +119,13 @@ def listar_valores():
     for valor in produto.values():
         print(valor)
 
+
 listar_valores()
 print('================================================================================')
-#========================================================================================
-#Percorrendo chaves e valores
+
+
+# ========================================================================================
+# Percorrendo chaves e valores
 def exibir_produto():
     produto = {
         'nome': 'Caneta Azul',
@@ -136,10 +136,13 @@ def exibir_produto():
     for chave, valor in produto.items():
         print(f'{chave}: {valor}')
 
+
 exibir_produto()
 print('================================================================================')
-#===========================================================================================
-#atualizando e calculando
+
+
+# ===========================================================================================
+# atualizando e calculando
 def atualizar_estoque():
     produto = {
         'nome': 'Caneta Azul',
@@ -147,31 +150,36 @@ def atualizar_estoque():
         'preco_unitario': 1.25
     }
     produto['total'] = produto['quantidade'] * produto['preco_unitario']
-    print(f'O estoque todo do produto: {produto ['nome']} \n Fica: {produto['total']}')
+    print(f"O estoque todo do produto: {produto['nome']} \n Fica: {produto['total']}")
+
 
 atualizar_estoque()
 print('====================================================================================')
-#============================================================================================
+
+
+# ============================================================================================
 def remover_estoque():
     produto = {
         'nome': 'Caneta Azul',
         'quantidade': 50,
         'preco_unitario': 1.25
     }
-    del produto['nome']
-    print(f'{produto['nome']} e {produto['preco_unitario']}foi removido do produto\n'
-          f' {produto}')
-
+    nome = produto['nome']
     preco_unitario = produto['preco_unitario']
+
+    del produto['nome']
+    print(f"{nome} e {preco_unitario} foi removido do produto\n {produto}")
 
     print(preco_unitario)
 
 
-#remover_estoque()
+# remover_estoque()
 
 print('===================================================================================')
-#===========================================================================================
-#lista de dicionarios
+
+
+# ===========================================================================================
+# lista de dicionarios
 def listar_produtos():
     produtos = [
         {'nome': 'Teclado', 'preco': 299.00, 'quantidade': 2},
@@ -180,15 +188,18 @@ def listar_produtos():
     ]
     total_geral = 0
     for produto in produtos:
-        print(f'O produto {produto["nome"]} custa {produto["preco"]}\n')
+        print(f"O produto {produto['nome']} custa {produto['preco']}\n")
         total_individual = produto['preco'] * produto['quantidade']
         total_geral += total_individual
 
     print(f'O total geral é: {total_geral}')
 
+
 listar_produtos()
 print('====================================================================================')
-#============================================================================================
+
+
+# ============================================================================================
 # Inserindo informação dinamicamente
 def cadastrar_aluno():
     aluno = {}
@@ -200,9 +211,12 @@ def cadastrar_aluno():
 
     print(f'Dados cadastrados! Novo aluno: {aluno}')
 
-#cadastrar_aluno()
+
+# cadastrar_aluno()
 print('================================================================================')
-#===========================================================================================
+
+
+# ===========================================================================================
 def criar_cadastro():
     dados = {}
 
@@ -213,33 +227,59 @@ def criar_cadastro():
         valor = input(f'Digite o valor da {chave}: ')
         dados[chave] = valor
 
-
-
     print('Cadastro final: ', dados)
 
-#criar_cadastro()
+
+# criar_cadastro()
 print('===================================================================================')
-#===========================================================================================
-#dicionario com lista
+
+
+# ===========================================================================================
+# dicionario com lista
 def calcular_media(notas):
     return sum(notas) / len(notas)
 
+
 def aluno_completo():
     aluno = {
-        'nome': 'Gustavo',
-        'idade': 17,
-        'curso': 'Desenvolvimento de Sistema',
-        'notas': [8.5, 9.3, 6.0, 8.7],
-        'endereco': {
-            'cidade': 'Piracicaba',
-            'rua': 'Das amoreiras',
-            'numero': '1903',
-            'telefone': '(19) 99999-9999'
+        "nome": "Renan",
+        "idade": 17,
+        "curso": "Desenvolvimento de Sistemas",
+        "notas": [8.5, 6.0, 9.3, 8.7],
+        "endereco": {
+            "cidade": "Piracicaba",
+            "rua": "Das Amoreiras",
+            "numero": 1257,
+            "telefone": "(19) 98847-3687"
         }
     }
-    aluno['media'] = calcular_media(aluno['notas'])
+    aluno["media"] = calcular_media(aluno['notas'])
     print(aluno)
 
-aluno_completo()
+
+# aluno_completo()
+print('===================================================================================')
 
 
+# ====================================================================================================
+import json
+
+def cadastrar_dados_aluno():
+    aluno = {}
+    aluno['nome'] = input('Digite o nome do aluno: ')
+    aluno['idade'] = int(input('Digite a idade do aluno: '))
+    aluno['curso'] = input('Digite o curso: ')
+    aluno['notas'] = []
+    for item in range(4):
+        aluno['notas'].append(float(input(f'Digite a nota {item + 1} do aluno: ')))
+
+    aluno['endereco'] = {}
+    aluno['endereco']['cidade'] = input('Digite o nome da sua cidade: ')
+    aluno['endereco']['rua'] = input('Digite o nome da sua rua: ')
+    aluno['endereco']['numero'] = int(input('Digite o numero da sua casa: '))
+    aluno['endereco']['telefone'] = input('Digite o telefone da sua casa: ')
+
+    aluno['media'] = calcular_media(aluno['notas'])
+    print('Aluno cadastrado',json.dumps(aluno, indent=4))
+
+cadastrar_dados_aluno()
