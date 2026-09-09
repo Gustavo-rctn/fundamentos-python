@@ -230,7 +230,7 @@ def criar_cadastro():
     print('Cadastro final: ', dados)
 
 
-# criar_cadastro()
+criar_cadastro()
 print('===================================================================================')
 
 
